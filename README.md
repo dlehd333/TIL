@@ -11,4 +11,4 @@
 ## 소켓프로그래밍
 > 작업환경 : Ubuntu, C, nano
 - [멀티프로세스 기반 서버(200921)](https://github.com/dlehd333/TIL/blob/master/소켓프로그래밍/멀티프로세스_기반_서버_2020_09_21.md)
-- [멀티쓰레드 기반 서버(200921) - 추가예정](https://github.com/dlehd333/TIL/blob/master/소켓프로그래밍/멀티쓰레도_기반_서버_2020_09_21.md)
+- [멀티쓰레드 기반 서버(200921) - 추가예정](https://github.com/dlehd333/TIL/blob/master/소켓프로그래밍/멀티쓰레드_기반_서버_2020_09_21.md)
