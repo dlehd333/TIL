@@ -16,13 +16,13 @@
 void* client_handle(void*);	// 함수 선언부
 void error_handling(char*);
 const char webpage[] = "HTTP/1.1 200 OK\r\n"	// 수정되지 않도록 CONST로 저장
-						"Server:Linux Web Server\r\n"
-						"COntent-Type: text/html; charset=UTF-8\r\n\r\n"
-						"<!DOCTYPE html>\r\n"
-						"<html><head><title>My Web Page</title>\r\n"
-						"<style>body {background-color:#FFFF00}</style></head>\r\n"
-						"<body><center><h1>Hello world!!</h1><br>\r\n"
-						"<img src=\"smartfactory.jpg\"></center></body></html>\r\n";
+"Server:Linux Web Server\r\n"
+"COntent-Type: text/html; charset=UTF-8\r\n\r\n"
+"<!DOCTYPE html>\r\n"
+"<html><head><title>My Web Page</title>\r\n"
+"<style>body {background-color:#FFFF00}</style></head>\r\n"
+"<body><center><h1>Hello world!!</h1><br>\r\n"
+"<img src=\"smartfactory.jpg\"></center></body></html>\r\n";
 pthread_mutex_t mutex;			// 뮤텍스 락 동기화 사용
 
 int main(int argc, char* argv[])
@@ -90,17 +90,17 @@ void* client_handle(void* arg)	// 쓰레드의 메인, 클라이언트가 사용
 		if(strncmp(msg, "GET /smartfactory.jpg", 21) == 0)	// 이미지를 요철할 경우
 		{
 			fdimg = fopen("./smartfactory.jpg", "rt");	// 파일포인터로 이미지 불러옴
-			memset(&imgbuf, 0, 700000);					// 입력할 버퍼 초기화
-			fread(imgbuf, 1, 700000, fdimg);			// 버퍼에 이미지 파일 내용 입력
+			memset(&imgbuf, 0, 700000);		// 입력할 버퍼 초기화
+			fread(imgbuf, 1, 700000, fdimg);	// 버퍼에 이미지 파일 내용 입력
 			write(clnt_sock, imgbuf, sizeof(imgbuf));	// 파일 내용을 클라이언트에게 보냄
-			fclose(fdimg);								// 파일포인터 종료
+			fclose(fdimg);	// 파일포인터 종료
 		}
 		else	// 이미지를 요청한 경우를 제외한 경우
 		{
 			write(clnt_sock, webpage, sizeof(webpage));	// webpage를 보내줌
 		}
 		pthread_mutex_unlock(&mutex);	// 뮤텍스 동기화 종료
-		memset(&msg, 0, MAX_BUF);		// 입력 버퍼 초기화
+		memset(&msg, 0, MAX_BUF);	// 입력 버퍼 초기화
 	}
 	close(clnt_sock);
 	return NULL;
