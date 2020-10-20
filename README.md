@@ -51,7 +51,9 @@
 ---
 ## 데이터베이스
 > 작업환경 : Windows10, Microsoft SQL Server 2019 15.0.2000.5, Microsoft SQL Server Management Studio 15.0.18338.0
-- [데이터베이스의 시작, MS-SQL 환경설정 및 테이블 생성](./데이터베이스/데이터베이스시작_mssql환경설정_2020-10-19.md)
+- [데이터베이스의 시작, MS-SQL 환경설정 및 테이블 생성(201019)](./데이터베이스/데이터베이스시작_mssql환경설정_2020-10-19.md)
+- [CHinook Database Sample(201020)](./데이터베이스/Chinook_Database_Sample_2020-10-20.md)
+- [데이터의 형식(type)과 Naming Convention(201020)](./데이터베이스/데이터_형식_2020-10-20.md)
 ---
 ## 미분류
 - [주기와 진동수(201013)](./미분류/주기_진동수_2020-10-13.md)
