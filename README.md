@@ -50,11 +50,14 @@
 - [파이썬 시리얼통신 쓰레드 사용에 관한 고찰(201016)](./라즈베리파이/파이썬_시리얼_쓰레드_사용법_고찰_2020-10-16.md)
 ---
 ## 데이터베이스
-> 작업환경 : Windows10, Microsoft SQL Server 2019 15.0.2000.5, Microsoft SQL Server Management Studio 15.0.18338.0
+> 작업환경 : Windows10, Microsoft SQL Server 2019 15.0.2000.5, Microsoft SQL Server Management Studio 15.0.18338.0, Chinook Database Sample
 - [데이터베이스의 시작, MS-SQL 환경설정 및 테이블 생성(201019)](./데이터베이스/데이터베이스시작_mssql환경설정_2020-10-19.md)
-- [CHinook Database Sample(201020)](./데이터베이스/Chinook_Database_Sample_2020-10-20.md)
+- [CHinook Database Sample(201020,23)](./데이터베이스/Chinook_Database_Sample_2020-10-20.md)
 - [데이터의 형식(type)과 Naming Convention(201020)](./데이터베이스/데이터_형식_2020-10-20.md)
-- [코드 테이블, SELECT 구문(201022)](./데이터베이스/코드테이블_select_2020-10-22.md)
+- [코드 테이블, SELECT 구문(201022~23)](./데이터베이스/코드테이블_select_2020-10-22.md)
+- [INSERT, UPDATE, DELETE 구문, 동적 SQL(201023)](./데이터베이스/insert_update_delete_2020-10-23.md)
+- [뷰, 인덱스, 저장 프로시저, 트리거(201023)](./데이터베이스/뷰_인덱스_프로시저_트리거_2020-10-23.md)
+- [제약조건, 메모리테이블, 스키마, 계정관리(201023)](./데이터베이스/제약조건_메모리테이블_스키마_2020-10-23.md)
 ---
 ## 미분류
 - [주기와 진동수(201013)](./미분류/주기_진동수_2020-10-13.md)
