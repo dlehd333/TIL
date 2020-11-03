@@ -8,6 +8,13 @@
 - 공유할 필요가 없는, 혹은 잘못된 정보를 공유하지 않기 위해 노력한다
 - 의미있는 커밋 메시지를 꼭 남긴다
 ---
+## C#
+> 작업환경 : Windows10, C# 8.0, .NET framework 4.8, Microsoft Visual Studio
+- [Managed Code(201103)](./C#/Managed_Code_2020-11-03.md)
+- [Hello World(201103)](./C#/Hello_World_2020-11-03.md)
+- [데이터 형식(201103)](./C#/데이터_형식_2020-11-03.md)
+- [C#의 연산자(201103)](./C#/연산자_2020-11-03.md)
+---
 ## C/C++
 > 작업환경 : Windows10, C/C++, Microsoft Visual Studio, CLion(체험판)
 - [변수의 저장과 포인터(201026)](./C,C++/변수_포인터_2020-10-26.md)
