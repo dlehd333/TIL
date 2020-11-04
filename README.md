@@ -9,14 +9,22 @@
 - 의미있는 커밋 메시지를 꼭 남긴다
 ---
 ## C#
-> 작업환경 : Windows10, C# 8.0, .NET framework 4.8, Microsoft Visual Studio
+> 작업환경 : Windows10, C# 8.0, .NET framework 4.8, Microsoft Visual Studio 2019
+- [Hello World(201103~04)](./C#/Hello_World_2020-11-03.md)
 - [Managed Code(201103)](./C#/Managed_Code_2020-11-03.md)
-- [Hello World(201103)](./C#/Hello_World_2020-11-03.md)
-- [데이터 형식(201103)](./C#/데이터_형식_2020-11-03.md)
+- [데이터 형식(201103~04)](./C#/데이터_형식_2020-11-03.md)
 - [C#의 연산자(201103)](./C#/연산자_2020-11-03.md)
+- [메서드(201104)](./C#/메서드_2020-11-04.md)
+- [클래스(201104)](./C#/클래스_2020-11-04.md)
+- [C#에서 사용하는 디자인 패턴(201104)](./C#/디자인_패턴_2020-11-04.md)
+- [C#의 객체지향 프로그래밍 - 숫자 야구 게임(3)(201104)](./C#/숫자_야구_게임_2020-11-04.md)
+---
+## .NET
+> 작업환경 : Windows10, C# 8.0, .NET framework 4.8, Microsoft Visual Studio 2019
+- [.NET의 구성요소(201104)](./.NET/.NET의_구성요소_2020-11-04.md)
 ---
 ## C/C++
-> 작업환경 : Windows10, C/C++, Microsoft Visual Studio, CLion(체험판)
+> 작업환경 : Windows10, C/C++, Microsoft Visual Studio 2019, CLion(체험판)
 - [변수의 저장과 포인터(201026)](./C,C++/변수_포인터_2020-10-26.md)
 - [객체지향 프로그래밍까지의 과정 - 숫자 야구 게임(1)(201027)](./C,C++/숫자야구게임1_2020-10-27.md)
 - [객체지향 프로그래밍까지의 과정 - 숫자 야구 게임(2)(201028)](./C,C++/숫자야구게임2_2020-10-28.md)
@@ -41,8 +49,6 @@
 ---
 ## 파이썬
 > 작업환경 : Windows10, Python 3.8.5, PyCharm 2020.2.2(Community Edition)
-
-> 작업환경 : Raspberry Pi OS, Python 3.7, Thonny Python IDE
 - [기초부터 조건문까지(200928)](./파이썬/기초부터_조건문까지_2020-09-28.md)
 - [반복문과 리스트(200929)](./파이썬/반복문과_리스트_2020-09-29.md)
 - [문자열(201006)](./파이썬/문자열_2020-10-06.md)
@@ -50,7 +56,7 @@
 - [함수와 윈도우 프로그래밍(201007)](./파이썬/함수_윈도우프로그래밍_2020-10-07.md)
 ---
 ## 라즈베리 파이
-> 작업환경 : Raspberry Pi OS(32-bit) August 2020, Raspberry Pi3 Model B+
+> 작업환경 : Raspberry Pi OS(32-bit) August 2020, Raspberry Pi3 Model B+, Python 3.7, Thonny Python IDE
 - [라즈베리파이_시작하기(200929)](./라즈베리파이/라즈베리파이_시작하기_2020-09-29.md)
 - [초기설정(201006)](./라즈베리파이/초기설정_2020-10-06.md)
 - [RPi.GPIO와 try except 구문(201007)](./라즈베리파이/RPi.GPIO_try_except_2020-10-07.md)
