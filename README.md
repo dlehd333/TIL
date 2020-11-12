@@ -24,6 +24,8 @@
 - [이벤트, LINQ 및 표준 쿼리 연산자(201110)](./C%23/이벤트_LINQ_2020-11-10.md)
 - [파일 다루기(201111)](./C%23/파일_다루기_2020-11-11.md)
 - [ADO.NET 시작하기(201111)](./C%23/ADO.NET_시작하기_2020-11-11.md)
+- [ADO.NET 리팩토링(201112)](./C%23/ADO.NET_리팩토링_2020-11-12.md)
+- [Entity Framework 시작하기(201112)](./C%23/Entity_Framework_시작하기_2020-11-12.md)
 ---
 ## C/C++
 > 작업환경 : Windows10, C/C++, Microsoft Visual Studio 2019, CLion(체험판)
