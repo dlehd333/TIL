@@ -112,3 +112,80 @@ using(var context = new ChinookEntities())
 	context.SaveChanges();
 }
 ```
+
+# Entity Framework 리팩토링
+
+## 1. DAO 부모 클래스 생성
+
+- Dao클래스의 중복으로 사용되는 메서드를 부모 클래스로 통합해준다. 이 부분은 ADO.NET에서 진행한 리팩토링과 유사하다.
+
+```csharp
+public abstract class BaseDao<T> where T : class
+{
+	public int GetCount()
+	{
+		using(var context = new ChinookEntities())
+		{
+			return context.Set<T>().Count();
+		}
+}
+```
+
+- 물론, 기본 키에 따라 달라지는 중간 상속 클래스도 만들어준다. 이렇게 생성한 부모 클래스도 ADO.NET에 비해 EF가 매우 짧다.
+
+```csharp
+public abstract class SingleKeyDao<T, K> : BaseDao<T> where T : class
+{
+	public T GetByPK(K key)
+	{
+		using (ChinookEntities context = new ChinookEntities())
+		{
+			return context.Set<T>()
+			.Where(IsKey(key))
+			.FirstOrDefault();
+		}
+	}
+}
+```
+
+## 2. EF Entity 설정
+
+- 지금 사용되는 메서드에서 using문 안에는 우리가 지정한 데이터베이스 이름으로 만들어진 context가 사용되고 있다. 이를, 다른 데이터베이스가 들어와도 사용할 수 있도록 변경하고자 한다.
+- 그래서 using문 내에서 새로운 Entity를 선언해주는 부분을 대리자를 만들어 입력받으려고 한다
+- 대리자 값을 받는 static 클래스를 만들어, 대리자 핸들러를 받고 그 메서드를 통해 생성한 데이터베이스 생성을 진행한다.
+
+```csharp
+// 1. 대리자값을 받는 클래스 생성.
+public class DbContextCreator
+{
+	// 생성되는 ___Entity 타입의 클래스는 DbContext를 상속받고 있다
+	public static Func<DbContext> Context { get; set; }
+}
+
+// 2. using문에 기존에 사용하던 new 키워드 대신 대리자를 넣는다
+public abstract class BaseDao<T> where T : class
+{
+	public int GetCount()
+	{
+		using(var context = DbContextCreator.Context)
+		{
+			return context.Set<T>().Count();
+		}
+}
+
+// 3. 메인 프로그램에서 using문에 들어갈 대리자 핸들러를 지정한다
+class Program
+{
+	static DbContext CreateDbContext()
+	{
+		return new ChinookEntities();
+	}
+
+	static void Main()
+	{
+		DbContextCreator.Context = CreateDbContext;
+		// 람다식을 이용하는 방법
+		// DbContextCreator.Context = () => new ChinookEntities();
+	}
+}
+```
