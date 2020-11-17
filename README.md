@@ -26,6 +26,7 @@
 - [ADO.NET 시작하기(201111)](./C%23/ADO.NET_시작하기_2020-11-11.md)
 - [ADO.NET 리팩토링(201112)](./C%23/ADO.NET_리팩토링_2020-11-12.md)
 - [Entity Framework 시작하기(201112,16)](./C%23/Entity_Framework_시작하기_2020-11-12.md)
+- [Winform 시작하기(201117)](./C%23/Winform_시작하기_2020-11-17.md)
 ---
 ## C/C++
 > 작업환경 : Windows10, C/C++, Microsoft Visual Studio 2019, CLion(체험판)
@@ -86,4 +87,4 @@
 ## 미분류
 - [주기와 진동수(201013)](./미분류/주기_진동수_2020-10-13.md)
 - [Unit Test - MSTest(201109)](./미분류/MSTest_2020-11-09.md)
-- [Visual Studio에서 Github사용하기(201116)](./미분류/Visual_Studio에서_Github_사용하기_2020-11-16.md)
+- [Visual Studio에서 Github사용하기(201116~17)](./미분류/Visual_Studio에서_Github_사용하기_2020-11-16.md)
