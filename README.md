@@ -27,7 +27,8 @@
 - [ADO.NET 리팩토링(201112)](./C%23/ADO.NET_리팩토링_2020-11-12.md)
 - [Entity Framework 시작하기(201112,16)](./C%23/Entity_Framework_시작하기_2020-11-12.md)
 - [Winform 시작하기(201117)](./C%23/Winform_시작하기_2020-11-17.md)
-- [Winform에서 EF 데이터 사용하기](./C%23/Winform에서_EF_데이터_사용하기_2020-11-18.md)
+- [Winform에서 EF 데이터 사용하기(201118)](./C%23/Winform에서_EF_데이터_사용하기_2020-11-18.md)
+- [Winform에서 상속 사용하기(201119)](./C%23/Winform에서_상속_사용하기_2020-11-19.md)
 ---
 ## C/C++
 > 작업환경 : Windows10, C/C++, Microsoft Visual Studio 2019, CLion(체험판)
