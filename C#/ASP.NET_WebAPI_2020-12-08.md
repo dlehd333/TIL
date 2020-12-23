@@ -115,20 +115,36 @@ public class AlbumMetaData
 }
 ```
 
-# Entity Framework의 사용
+# Web Server에서 Entity Framework의 사용
 
-- 프로젝트에 Entity Framework로 데이터베이스를 불러오고, 빌드해준다
-- 컨트롤러를 생성하는데, "Entity Framework를 사용하며 동작이 포함된 Web API 2 컨트롤러"를 선택한다
-- 모델 클래스(테이블) 및 컨텍스트 클래스(Entities)를 추가하고, 이름을 설정해주면 생성된다
-- 생성된 컨트롤러에서 메서드의 이름을 변경하거나 내용을 수정해도 되지만, 인자로 받아들이는 'id'값을 변경하면 안된다. 기본 주소로 설정된 이름이기 때문이다.
-- 실제 ASP.NET에서 직렬화를 진행하고 실행하면, 오류가 발생하는데 이는 데이터가 실제 엔티티가 아닌 프록시 인스턴스로 반환하기 때문이다.
+1. Entity Framework가 들어갈 클래스 라이브러리 프로젝트를 생성해준다
+2. Data 프로젝트에 Entity Framework로 데이터베이스를 불러오고, 빌드해준다
+3. 프로젝트의 Web.config 파일에 연결 문자열을 추가하고, Entity가 들어간 Data 프로젝트를 참조 추가한다
+4. 컨트롤러를 생성하는데, "Entity Framework를 사용하며 동작이 포함된 Web API 2 컨트롤러"를 선택한다
+5. 모델 클래스(테이블) 및 컨텍스트 클래스(Entities)를 추가하고, 이름을 설정해주면 생성된다
+
+- 생성된 컨트롤러에서 메서드의 이름을 변경하거나 내용을 수정해도 되지만, 매개변수로 받아들이는 'id'값을 변경하면 안된다. 기본 주소로 설정된 이름이기 때문이다.
+- 실제 ASP.NET에서 직렬화를 진행하고 데이터를 불러오면, 오류가 발생하는데 이는 데이터가 실제 엔티티가 아닌 프록시 인스턴스로 반환하기 때문이다.
 - 지금은 프록시를 필요로 하지 않기 때문에 컨트롤러의 생성자 단에서 해당 옵션을 해제해주면 정상적으로 직렬화된 Entity 데이터가 전달된다.
 
 ```csharp
-_context.Configuration.ProxyCreationEnabled = false;
+public AlbumsController()
+{
+	if(DbContextCreator.Context == null)
+	{
+		ChinookEntities context = new ChinookEntities();
+		context.Configuration.ProxyCreationEnabled = false; // 프록시 옵션 해제
+		DbContextCreator.Context = () => context;
+	}
+}
+
+public List<Album> GetAlbums()
+{
+	return Dao.Album.GetAll();
+}
 ```
 
-# GET 이외의 메서드 테스트
+# GET 이외의 메서드 테스트 방법(Postman)
 
 - GET 메서드는 프로젝트를 실행하고, 브라우저 상에서 경로를 입력하면 테스트가 가능하다.
 - 하지만, 다른 메서드를 테스트하기 위해서는 다른 클라이언트 도구가 필요하다.
@@ -147,11 +163,22 @@ Name:ABC
 ArtistId:3
 ```
 
+# IIS로 Web에 게시
+
+- 프로그램 및 기능 - Windows 기능 켜기/끄기 에서 아래 항목을 켜준다
+    - 인터넷 정보 서비스 - World Wide Web 서비스
+    - 인터넷 정보 서비스 - World Wide Web 서비스 - 응용 프로그램 개발 기능 - [ASP.NET](http://asp.NET) 4.8
+    - 인터넷 정보 서비스 - 웹 관리 도구
+    - .NET Framework 4.8 Advanced Services - [ASP.NET](http://asp.NET) 4.8
+    - 설정 후 재시작
+- "IIS(인터넷 정보 서비스) 관리자" 실행
+- 사이트 - Default Web Site - 기본 설정에서 "실제 경로"에 경로 지정
+- 웹서버 프로젝트에서 우클릭 후 "게시"선택
+- 대상 위치에 위에서 지정한 경로를 입력해주고 "게시" 선택
+- IIS 관리자에서 새로고침하면 뜨는 게시한 폴더에 우클릭 후 "응용 프로그램으로 전환"을 선택 후 확인
+- 자신의 IP주소/프로젝트명(폴더명)으로 브라우저에서 접속하면 열리게 된다
+
 # 클라이언트 프로젝트
-
-## **※ 서버가 웹에 게시되어야 실행이 가능하다 ※**
-
-- 우리는 아래와 같은 코드가 작동하도록 하는 클라이언트 콘솔 프로젝트를 만들고 싶다. 하지만 저 4줄 만으로는 부족한 부분이 너무 많다.
 
 ```csharp
 // example code
@@ -161,14 +188,20 @@ album.ArtistId = 5;
 api.Update(album);
 ```
 
-- 그래서 C# WebAPI 클라이언트를 생성해주는 도구인 NSwagStudio을 사용하여 간단한 웹 클라이언트를 만들어보자
+- 우리는 위와 같은 코드가 작동하는 클라이언트 콘솔 프로젝트를 만들고 싶다. 하지만 저 4줄 만으로는 부족한 부분이 너무 많다.
+- 그래서 WebAPI 클라이언트를 생성해주는 도구인 NSwagStudio, Swagger Editor 등을 사용하여 간단하게 웹 클라이언트를 만들어보자
+
+## **※ 서버가 웹에 게시되어야 실행이 가능하다 ※**
+
+## .NET Web Client
+
 1. NSwagStudio를 다운받는다 : [Github](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio)
-2. Rutime - Default로 설정
-3. Web API via reflection - .NET Assembly Paths (...) 항목에 "프로젝트명.dll"파일을 불러온다
-4. Load Assemblies 버튼을 눌러 적용해준다
-5. 우측의 Output에서 "CSharp Client"를 체크하고 CSharp Client 메뉴의 Settings에서 namespace를 변경해준다.
-6. Generate Outputs를 눌러 API 사양과 C# 코드를 생성한다
-7. C# 코드를 복사하여 해당 코드로 생성된 클래스 파일을 추가해준다
+1. Rutime - Default로 설정
+2. Web API via reflection - .NET Assembly Paths (...) 항목에 "프로젝트명.dll"파일을 불러온다
+3. Load Assemblies 버튼을 눌러 적용해준다
+4. 우측의 Output에서 "CSharp Client"를 체크하고 CSharp Client 메뉴의 Settings에서 namespace를 변경해준다.
+5. Generate Outputs를 눌러 API 사양과 C# 코드를 생성한다
+6. C# 코드를 복사하여 해당 코드로 생성된 클래스 파일을 추가해준다
 
 ```csharp
 // 첫번째 인자로 입력된 url이 "BaseUrl"이다
@@ -192,4 +225,42 @@ album.Name = DateTime.Now.ToString();
 api.PutAlbumAsync(album.AlbumId, album).Wait(); // PUT
 // 해당 앨범 데이터를 삭제한다
 api.DeleteAlbumAsync(album.AlbumId).Wait(); // DELETE
+```
+
+## Python Web Client
+
+1. NSwagStudio를 다운받는다 : [링크](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio)
+2. Rutime - Default로 설정
+3. Web API via reflection - .NET Assembly Paths (...) 항목에 서버 "프로젝트명.dll"파일을 불러온다
+4. Load Assemblies 버튼을 눌러 적용해준다
+5. Generate Outputs 버튼을 눌러 서버 사양 정보를 출력한다
+6. 출력한 사양 정보를 복사해, [Swagger Editor](https://editor.swagger.io/)에 접속해 붙여넣는다
+7. Generate Client - Python을 선택해 다운받는다
+8. 다운받은 파일 중 'docs'폴더와 'swagger_client'폴더를 복사해 원하는 파이썬 클라이언트 프로젝트에 넣는다
+9. swagger_client폴더의 configration.py 파일에 기본 경로를 지정해준다
+
+```python
+# Default Base url
+self.host = "http://10.10.31.231/HelloWebApi"
+```
+
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client import Configuration
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+configuration = Configuration()
+# configuration.
+api_instance = swagger_client.AlbumsApi(swagger_client.ApiClient(configuration))
+id = 1 # int |
+
+try:
+   api_response = api_instance.albums_get_album(1)
+   pprint(api_response)
+except ApiException as e:
+   print("Exception when calling AlbumsApi->albums_delete_album: %s\n" % e)
 ```
